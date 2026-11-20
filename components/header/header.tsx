@@ -11,6 +11,7 @@ import { MainNav } from "./main-nav";
 import { MobileMenu } from "./mobile-menu";
 import type { MenuItem } from "./types";
 
+
 export function SocialLinks({ className = "", size = 22 }: { className?: string; size?: number }) {
   const links = [
     { name: "Instagram", url: site.social.instagram, Icon: Instagram },
