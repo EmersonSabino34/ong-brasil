@@ -18,6 +18,7 @@ export function SocialLinks({ className = "", size = 22 }: { className?: string;
     { name: "Facebook", url: site.social.facebook, Icon: Facebook },
     { name: "YouTube", url: site.social.youtube, Icon: Youtube },
   ];
+  
   return (
     <ul className={`flex items-center gap-3.5 ${className}`}>
       {links.map(({ name, url, Icon }) => (
