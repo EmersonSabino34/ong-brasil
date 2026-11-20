@@ -1,0 +1,115 @@
+import type { T } from "@/lib/i18n";
+
+/** Textos dos formulários (rótulos, opções e mensagens). */
+export const forms = {
+  name: { pt: "Nome completo", fr: "Nom complet", nl: "Volledige naam" },
+  email: { pt: "E-mail", fr: "E-mail", nl: "E-mail" },
+  phone: { pt: "Telefone / WhatsApp", fr: "Téléphone / WhatsApp", nl: "Telefoon / WhatsApp" },
+  optional: { pt: "opcional", fr: "facultatif", nl: "optioneel" },
+  subject: { pt: "Assunto", fr: "Objet", nl: "Onderwerp" },
+  message: { pt: "Mensagem", fr: "Message", nl: "Bericht" },
+  country: { pt: "País", fr: "Pays", nl: "Land" },
+  city: { pt: "Cidade", fr: "Ville", nl: "Stad" },
+  organization: { pt: "Empresa / instituição", fr: "Entreprise / institution", nl: "Bedrijf / organisatie" },
+  select: { pt: "Selecione…", fr: "Sélectionnez…", nl: "Kies…" },
+  send: { pt: "Enviar mensagem", fr: "Envoyer le message", nl: "Bericht versturen" },
+  sending: { pt: "Enviando…", fr: "Envoi…", nl: "Bezig met verzenden…" },
+  sendAnother: { pt: "Enviar outra", fr: "Envoyer un autre", nl: "Nog een versturen" },
+  consent: {
+    pt: "Autorizo o uso dos meus dados para que a Infinita Esperança entre em contato, conforme a",
+    fr: "J’autorise Infinita Esperança à utiliser mes données pour me recontacter, conformément à la",
+    nl: "Ik geef Infinita Esperança toestemming om mijn gegevens te gebruiken om contact op te nemen, volgens het",
+  },
+  consentLink: { pt: "Política de Privacidade", fr: "politique de confidentialité", nl: "privacybeleid" },
+  countries: {
+    br: { pt: "Brasil", fr: "Brésil", nl: "Brazilië" },
+    pt: { pt: "Portugal", fr: "Portugal", nl: "Portugal" },
+    be: { pt: "Bélgica", fr: "Belgique", nl: "België" },
+    outro: { pt: "Outro país", fr: "Autre pays", nl: "Ander land" },
+  } satisfies Record<string, T>,
+
+  contactSubjects: {
+    duvida: { pt: "Dúvidas gerais", fr: "Questions générales", nl: "Algemene vragen" },
+    doacao: { pt: "Doações em dinheiro", fr: "Dons financiers", nl: "Financiële giften" },
+    itens: { pt: "Doação de itens (agendar entrega)", fr: "Don d’objets (planifier un dépôt)", nl: "Goederen schenken (afgifte plannen)" },
+    voluntariado: { pt: "Voluntariado", fr: "Bénévolat", nl: "Vrijwilligerswerk" },
+    parceria: { pt: "Parcerias", fr: "Partenariats", nl: "Partnerschappen" },
+    transparencia: { pt: "Transparência / documentos", fr: "Transparence / documents", nl: "Transparantie / documenten" },
+    imprensa: { pt: "Imprensa", fr: "Presse", nl: "Pers" },
+    atendimento: { pt: "Quero ser atendido pela ONG", fr: "Je souhaite être accompagné", nl: "Ik wil hulp van de organisatie" },
+    outro: { pt: "Outro assunto", fr: "Autre sujet", nl: "Ander onderwerp" },
+  } satisfies Record<string, T>,
+
+  volunteerAreas: {
+    "alimentacao-solidaria": { pt: "Alimentação Solidária", fr: "Alimentation solidaire", nl: "Solidaire maaltijden" },
+    "roupas-e-itens-essenciais": { pt: "Roupas e Itens Essenciais", fr: "Vêtements et produits essentiels", nl: "Kleding en basisproducten" },
+    "oficinas-artesanais": { pt: "Oficinas Artesanais", fr: "Ateliers artisanaux", nl: "Ambachtelijke workshops" },
+    "futebol-social": { pt: "Futebol Social", fr: "Football Social", nl: "Sociaal Voetbal" },
+    "educacao-e-cidadania": { pt: "Educação e Cidadania", fr: "Éducation et citoyenneté", nl: "Onderwijs en burgerschap" },
+    "apoio-a-familia": { pt: "Apoio à Família", fr: "Soutien aux familles", nl: "Steun aan gezinnen" },
+    comunicacao: { pt: "Comunicação e redes sociais", fr: "Communication et réseaux sociaux", nl: "Communicatie en sociale media" },
+    eventos: { pt: "Eventos e campanhas", fr: "Événements et campagnes", nl: "Evenementen en acties" },
+  } satisfies Record<string, T>,
+  volunteerAreasLabel: { pt: "Áreas de interesse", fr: "Domaines d’intérêt", nl: "Interessegebieden" },
+  availability: { pt: "Disponibilidade", fr: "Disponibilités", nl: "Beschikbaarheid" },
+  availabilityOptions: {
+    manha: { pt: "Dias úteis – manhã", fr: "En semaine – matin", nl: "Weekdagen – voormiddag" },
+    tarde: { pt: "Dias úteis – tarde", fr: "En semaine – après-midi", nl: "Weekdagen – namiddag" },
+    noite: { pt: "Dias úteis – noite", fr: "En semaine – soir", nl: "Weekdagen – avond" },
+    fds: { pt: "Fins de semana", fr: "Week-ends", nl: "Weekends" },
+    remoto: { pt: "Voluntariado a distância", fr: "Bénévolat à distance", nl: "Vrijwilligerswerk op afstand" },
+  } satisfies Record<string, T>,
+  volunteerMessage: { pt: "Conte um pouco sobre você e suas habilidades", fr: "Parlez-nous un peu de vous et de vos compétences", nl: "Vertel iets over uzelf en uw vaardigheden" },
+  volunteerSend: { pt: "Quero ser voluntário", fr: "Je veux devenir bénévole", nl: "Ik word vrijwilliger" },
+
+  partnerTypes: {
+    patrocinio: { pt: "Patrocínio de projeto", fr: "Parrainage de projet", nl: "Projectsponsoring" },
+    produtos: { pt: "Doação de produtos ou serviços", fr: "Don de produits ou de services", nl: "Schenking van producten of diensten" },
+    corporativo: { pt: "Voluntariado corporativo", fr: "Bénévolat d’entreprise", nl: "Bedrijfsvrijwilligerswerk" },
+    causa: { pt: "Marketing de causa / campanhas", fr: "Marketing solidaire / campagnes", nl: "Goededoelenmarketing / acties" },
+    institucional: { pt: "Parceria institucional", fr: "Partenariat institutionnel", nl: "Institutioneel partnerschap" },
+    outro: { pt: "Outro formato", fr: "Autre format", nl: "Andere vorm" },
+  } satisfies Record<string, T>,
+  partnerType: { pt: "Tipo de parceria", fr: "Type de partenariat", nl: "Soort partnerschap" },
+  partnerMessage: { pt: "Conte sua ideia de parceria", fr: "Décrivez votre idée de partenariat", nl: "Beschrijf uw idee voor een partnerschap" },
+  partnerSend: { pt: "Enviar proposta", fr: "Envoyer la proposition", nl: "Voorstel versturen" },
+
+  errors: {
+    required: { pt: "Campo obrigatório.", fr: "Champ obligatoire.", nl: "Verplicht veld." },
+    email: { pt: "Informe um e-mail válido.", fr: "Veuillez saisir une adresse e-mail valide.", nl: "Vul een geldig e-mailadres in." },
+    consent: {
+      pt: "É preciso aceitar a política de privacidade.",
+      fr: "Vous devez accepter la politique de confidentialité.",
+      nl: "U moet het privacybeleid aanvaarden.",
+    },
+    short: { pt: "Escreva pelo menos 10 caracteres.", fr: "Écrivez au moins 10 caractères.", nl: "Schrijf minstens 10 tekens." },
+    choose: { pt: "Selecione uma opção.", fr: "Sélectionnez une option.", nl: "Kies een optie." },
+    chooseArea: { pt: "Escolha pelo menos uma área.", fr: "Choisissez au moins un domaine.", nl: "Kies minstens één gebied." },
+    form: { pt: "Confira os campos destacados.", fr: "Vérifiez les champs indiqués.", nl: "Controleer de aangeduide velden." },
+    server: {
+      pt: "Não foi possível enviar agora. Tente novamente em instantes.",
+      fr: "Envoi impossible pour le moment. Réessayez dans un instant.",
+      nl: "Verzenden lukt nu niet. Probeer het zo meteen opnieuw.",
+    },
+    amountMin: { pt: "O valor mínimo é", fr: "Le montant minimum est de", nl: "Het minimumbedrag is" },
+    amountMax: { pt: "Para valores acima de 100 mil, fale conosco.", fr: "Au-delà de 100 000, contactez-nous.", nl: "Neem voor bedragen boven 100.000 contact met ons op." },
+  },
+  success: {
+    contact: {
+      pt: "Mensagem enviada! Responderemos em até 2 dias úteis.",
+      fr: "Message envoyé ! Nous vous répondrons sous 2 jours ouvrables.",
+      nl: "Bericht verzonden! We antwoorden binnen 2 werkdagen.",
+    },
+    volunteer: {
+      pt: "Inscrição recebida! Nossa equipe entrará em contato para agendar uma conversa.",
+      fr: "Inscription reçue ! Notre équipe vous contactera pour fixer un premier échange.",
+      nl: "Inschrijving ontvangen! Ons team neemt contact op voor een kennismakingsgesprek.",
+    },
+    partner: {
+      pt: "Proposta recebida! Nossa equipe de parcerias retornará em breve.",
+      fr: "Proposition reçue ! Notre équipe partenariats vous répondra rapidement.",
+      nl: "Voorstel ontvangen! Ons partnerteam neemt snel contact met u op.",
+    },
+    protocol: { pt: "Protocolo", fr: "Référence", nl: "Referentie" },
+  },
+};

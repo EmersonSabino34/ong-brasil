@@ -1,26 +1,154 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Paleta tirada do layout original */
+@theme {
+  --color-navy-950: #061c34;
+  --color-navy-900: #0b2a4a;
+  --color-navy-800: #093057;
+  --color-navy-700: #0e4470;
+  --color-navy-600: #175a8f;
+  --color-navy-100: #e2ebf5;
+  --color-navy-50: #f1f5fa;
+
+  --color-gold-50: #fff8e6;
+  --color-gold-100: #fdefc7;
+  --color-gold-300: #f7d47a;
+  --color-gold-400: #f5bf3a;
+  --color-gold-500: #e9b534;
+  --color-gold-600: #d9970f;
+  --color-gold-700: #a86f04;
+
+  --color-leaf-700: #1d5c40;
+  --color-leaf-600: #24704e;
+  --color-leaf-50: #edf6f0;
+
+  --color-ink: #24303d;
+  --color-muted: #586374;
+  --color-line: #e4e7ec;
+  --color-cream: #f7f7f3;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-merriweather), Georgia, "Times New Roman", serif;
+  --font-script: var(--font-caveat), "Segoe Script", cursive;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+/* Âncoras não ficam escondidas atrás do menu fixo */
+[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+@layer components {
+  .container-site {
+    width: 100%;
+    max-width: 1536px;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 640px) {
+    .container-site {
+      padding-inline: 1.5rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .container-site {
+      padding-inline: 2.25rem;
+    }
+  }
+
+  .btn,
+  .btn-gold,
+  .btn-gold-soft,
+  .btn-outline-gold,
+  .btn-outline-light,
+  .btn-navy {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-[10px] px-5 py-2.5 font-bold leading-none transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-500 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  /* "Doe Agora": dourado com texto branco */
+  .btn-gold {
+    @apply text-white shadow-[0_6px_16px_-6px_rgb(201_131_6/0.7)] hover:brightness-105 active:brightness-95;
+    background-image: linear-gradient(180deg, #efb032 0%, #d48c08 100%);
+  }
+  /* "Conheça nossos projetos": dourado claro com texto azul */
+  .btn-gold-soft {
+    @apply bg-gold-400 text-navy-900 shadow-sm hover:bg-gold-300;
+  }
+  .btn-outline-gold {
+    @apply rounded-2xl border-2 border-gold-500 bg-white text-navy-900 hover:bg-gold-50;
+  }
+  .btn-outline-light {
+    @apply rounded-xl border-2 border-white/85 text-white hover:bg-white/10;
+  }
+  .btn-navy {
+    @apply bg-navy-700 text-white hover:bg-navy-800;
+  }
+
+  .card {
+    @apply rounded-2xl bg-white shadow-[0_10px_30px_-18px_rgb(11_42_74/0.35)] ring-1 ring-black/[0.04];
+  }
+
+  .field-label {
+    @apply mb-1.5 block text-sm font-bold text-navy-900;
+  }
+  .field {
+    @apply w-full rounded-xl border border-line bg-white px-4 py-3 text-ink shadow-xs outline-none transition placeholder:text-muted/70 focus:border-navy-600 focus:ring-3 focus:ring-navy-600/15 aria-[invalid=true]:border-red-500 aria-[invalid=true]:ring-red-500/15;
+  }
+  .field-error {
+    @apply mt-1 text-sm font-semibold text-red-600;
+  }
+
+  .prose-ong p {
+    @apply mb-4 leading-relaxed text-ink/90;
+  }
+  .prose-ong h2 {
+    @apply mt-8 mb-3 font-serif text-2xl font-bold text-navy-900;
+  }
+  .prose-ong ul {
+    @apply mb-4 list-disc space-y-1.5 pl-5;
+  }
+}
+
+/* Apresentação do vídeo institucional (efeito Ken Burns) */
+@keyframes kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+@keyframes progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
