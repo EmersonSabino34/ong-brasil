@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+
 import { useSearchParams } from "next/navigation";
 import { startTransition, useActionState, useState, type FormEvent } from "react";
 import { registerDonation, type DonationResult, type DonationState } from "@/app/actions";
