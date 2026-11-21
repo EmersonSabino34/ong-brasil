@@ -1,6 +1,5 @@
 "use server";
 
-
 import QRCode from "qrcode";
 import { areas } from "@/lib/content/areas";
 import {
