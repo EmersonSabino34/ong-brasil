@@ -6,6 +6,7 @@ import { startTransition, useActionState, useState, type FormEvent } from "react
 import { registerDonation, type DonationResult, type DonationState } from "@/app/actions";
 import { ArrowLeft, ArrowRight, Check, CheckCircle, Copy, CreditCard, Heart, Landmark, Loader, QrCode, ShieldCheck, Smartphone } from "@/components/icons";
 import {
+  
   donation as d,
   formatMoney,
   methodsByCurrency,
