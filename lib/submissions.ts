@@ -1,5 +1,5 @@
 import { randomBytes } from "node:crypto";
-import { appendFile, mkdir } from "node:fs/promises";
+import { appendFile, mkdir, readFile } from "node:fs/promises";
 import path from "node:path";
 
 export type SubmissionKind = "contato" | "voluntario" | "parceria" | "doacao";
@@ -32,4 +32,25 @@ export async function saveSubmission(kind: SubmissionKind, data: Record<string, 
     // Sem disco gravável: ao menos registra no log do servidor.
     console.info(`[formulário:${kind}]`, JSON.stringify(record), error);
   }
+}
+
+export type SubmissionRecord = Record<string, unknown> & { kind: SubmissionKind; receivedAt: string; protocol?: string; userId?: string };
+
+/** Envios de um tipo feitos por um usuário conectado (para a página "Minha conta"), do mais novo ao mais antigo. */
+export async function submissionsByUser(kind: SubmissionKind, userId: string): Promise<SubmissionRecord[]> {
+  let text = "";
+  try {
+    text = await readFile(path.join(process.cwd(), ".data", `${kind}.jsonl`), "utf8");
+  } catch {
+    return [];
+  }
+  const list: SubmissionRecord[] = [];
+  for (const line of text.split("\n")) {
+    if (!line.trim()) continue;
+    try {
+      const record = JSON.parse(line) as SubmissionRecord;
+      if (record.userId === userId) list.push(record);
+    } catch {}
+  }
+  return list.sort((a, b) => b.receivedAt.localeCompare(a.receivedAt));
 }

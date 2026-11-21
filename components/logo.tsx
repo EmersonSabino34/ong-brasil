@@ -6,12 +6,22 @@ type LogoProps = {
 };
 
 /** Símbolo: laço do infinito dourado + "check" (azul no fundo claro, branco no fundo escuro). */
-export function LogoMark({ variant = "dark", className = "" }: { variant?: "dark" | "light"; className?: string }) {
+export function LogoMark({
+  variant = "dark",
+  className = "",
+  gradientId,
+}: {
+  variant?: "dark" | "light";
+  className?: string;
+  /** Id único do degradê: use quando houver outro símbolo igual na página que possa ficar escondido (display: none). */
+  gradientId?: string;
+}) {
   const check = variant === "dark" ? "#0b2a4a" : "#ffffff";
+  const gid = gradientId ?? `gold-${variant}`;
   return (
     <svg viewBox="0 0 120 84" className={className} aria-hidden="true" focusable="false">
       <defs>
-        <linearGradient id={`gold-${variant}`} x1="0" y1="0" x2="1" y2="1">
+        <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stopColor="#f7c84a" />
           <stop offset="1" stopColor="#d9940c" />
         </linearGradient>
@@ -19,11 +29,11 @@ export function LogoMark({ variant = "dark", className = "" }: { variant?: "dark
       <path
         d="M60 40C49 22 26 11 13 24 1 36 9 62 30 63c14 .6 23-11 31-22 9-13 25-30 41-25 9 3 11 12 7 20"
         fill="none"
-        stroke={`url(#gold-${variant})`}
+        stroke={`url(#${gid})`}
         strokeWidth="9"
         strokeLinecap="round"
       />
-      <path d="M27 74c11 5 24 4 34-3" fill="none" stroke={`url(#gold-${variant})`} strokeWidth="4" strokeLinecap="round" />
+      <path d="M27 74c11 5 24 4 34-3" fill="none" stroke={`url(#${gid})`} strokeWidth="4" strokeLinecap="round" />
       <path d="M70 46 83 62 113 22" fill="none" stroke={check} strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );

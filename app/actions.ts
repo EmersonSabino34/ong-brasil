@@ -11,8 +11,10 @@ import {
   type Frequency,
   type Method,
 } from "@/lib/content/donation";
+import { getCurrentUser } from "@/lib/auth/current-user";
 import { forms } from "@/lib/content/forms";
-import { defaultLocale, hasLocale, type Locale } from "@/lib/i18n";
+import { EMAIL, getLang, isBot, str, values } from "@/lib/form-data";
+import type { Locale } from "@/lib/i18n";
 import { pixPayload } from "@/lib/pix";
 import { site } from "@/lib/site";
 import { newProtocol, saveSubmission } from "@/lib/submissions";
@@ -40,15 +42,13 @@ export type DonationResult = {
 
 export type DonationState = FormState & { result?: DonationResult };
 
-const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
-function str(data: FormData, key: string, max = 2000) {
-  return String(data.get(key) ?? "").trim().slice(0, max);
-}
-
-function getLang(data: FormData): Locale {
-  const lang = str(data, "lang", 5);
-  return hasLocale(lang) ? lang : defaultLocale;
+/** Id do apoiador conectado (se houver), para o envio aparecer em "Minha conta". */
+async function currentUserId() {
+  try {
+    return (await getCurrentUser())?.id;
+  } catch {
+    return undefined;
+  }
 }
 
 /** Validações comuns: nome, e-mail, consentimento. */
@@ -58,15 +58,6 @@ function validateBase(data: FormData, lang: Locale, errors: FieldErrors) {
   if (!email) errors.email = forms.errors.required[lang];
   else if (!EMAIL.test(email)) errors.email = forms.errors.email[lang];
   if (data.get("consent") !== "on") errors.consent = forms.errors.consent[lang];
-}
-
-/** Campo invisível "website": robôs preenchem, pessoas não. */
-function isBot(data: FormData) {
-  return str(data, "website").length > 0;
-}
-
-function values(data: FormData, keys: string[]) {
-  return Object.fromEntries(keys.map((k) => [k, str(data, k)]));
 }
 
 /* ---------------- Contato ---------------- */
@@ -83,7 +74,7 @@ export async function sendContact(_prev: FormState, data: FormData): Promise<For
 
   const protocol = newProtocol("contato");
   try {
-    await saveSubmission("contato", { protocol, lang, ...values(data, keys) });
+    await saveSubmission("contato", { protocol, lang, userId: await currentUserId(), ...values(data, keys) });
   } catch {
     return { ok: false, message: forms.errors.server[lang], values: values(data, keys) };
   }
@@ -109,7 +100,7 @@ export async function sendVolunteer(_prev: FormState, data: FormData): Promise<F
 
   const protocol = newProtocol("voluntario");
   try {
-    await saveSubmission("voluntario", { protocol, lang, ...values(data, keys), areas: interests });
+    await saveSubmission("voluntario", { protocol, lang, userId: await currentUserId(), ...values(data, keys), areas: interests });
   } catch {
     return { ok: false, message: forms.errors.server[lang], values: values(data, keys) };
   }
@@ -132,7 +123,7 @@ export async function sendPartnership(_prev: FormState, data: FormData): Promise
 
   const protocol = newProtocol("parceria");
   try {
-    await saveSubmission("parceria", { protocol, lang, ...values(data, keys) });
+    await saveSubmission("parceria", { protocol, lang, userId: await currentUserId(), ...values(data, keys) });
   } catch {
     return { ok: false, message: forms.errors.server[lang], values: values(data, keys) };
   }
@@ -189,6 +180,7 @@ export async function registerDonation(_prev: DonationState, data: FormData): Pr
     await saveSubmission("doacao", {
       protocol,
       lang,
+      userId: await currentUserId(),
       ...values(data, keys),
       amount,
       anonymous: data.get("anonymous") === "on",

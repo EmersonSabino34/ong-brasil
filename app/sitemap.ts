@@ -19,6 +19,7 @@ const staticPaths = [
   "/galeria",
   "/contato",
   "/privacidade",
+  "/cadastro",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { PROTECTED_PATHS, SESSION_COOKIE } from "@/lib/auth/constants";
 import { defaultLocale, hasLocale, LOCALE_COOKIE, locales } from "@/lib/i18n";
 
 /** Escolhe o idioma: cookie (escolha do visitante) > Accept-Language do navegador > padrão. */
@@ -27,7 +28,19 @@ export function proxy(request: NextRequest) {
   const hasPrefix = locales.some(
     (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`),
   );
-  if (hasPrefix) return;
+  if (hasPrefix) {
+    // Área logada: sem cookie de sessão, vai direto para o login (a página confere a sessão de verdade).
+    const [, locale, ...rest] = pathname.split("/");
+    const page = `/${rest.join("/")}`;
+    const isProtected = PROTECTED_PATHS.some((p) => page === p || page.startsWith(`${p}/`));
+    if (isProtected && !request.cookies.has(SESSION_COOKIE)) {
+      const login = request.nextUrl.clone();
+      login.pathname = `/${locale}/entrar`;
+      login.search = `?next=${encodeURIComponent(pathname)}`;
+      return NextResponse.redirect(login);
+    }
+    return;
+  }
 
   request.nextUrl.pathname = `/${getLocale(request)}${pathname === "/" ? "" : pathname}`;
   return NextResponse.redirect(request.nextUrl);

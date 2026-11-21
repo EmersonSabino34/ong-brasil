@@ -1,11 +1,14 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { FlagBE, FlagBR, FlagPT } from "@/components/flags";
 import { Facebook, Heart, Instagram, MapPin, Youtube } from "@/components/icons";
 import { Logo } from "@/components/logo";
+import { auth } from "@/lib/content/auth";
 import { nav } from "@/lib/content/nav";
 import { ui } from "@/lib/content/ui";
 import { href, translator, type Locale } from "@/lib/i18n";
 import { site } from "@/lib/site";
+import { AccountLink, AccountLinkView } from "./account-link";
 import { LanguageSwitcher } from "./language-switcher";
 import { MainNav } from "./main-nav";
 import { MobileMenu } from "./mobile-menu";
@@ -71,9 +74,14 @@ export function Header({ lang }: { lang: Locale }) {
               <SocialLinks className="ml-4 text-navy-900" />
               <LanguageSwitcher lang={lang} label={t(ui.language)} />
             </div>
-            <Link href={donateHref} className="btn-gold px-8 py-3 text-[19px]">
-              {t(ui.donate)} <Heart size={20} strokeWidth={2.2} />
-            </Link>
+            <div className="flex items-center gap-3">
+              <Suspense fallback={<AccountLinkView lang={lang} variant="desktop" firstName={null} />}>
+                <AccountLink lang={lang} variant="desktop" />
+              </Suspense>
+              <Link href={donateHref} className="btn-gold px-8 py-3 text-[19px]">
+                {t(ui.donate)} <Heart size={20} strokeWidth={2.2} />
+              </Link>
+            </div>
           </div>
 
           {/* Celular / tablet */}
@@ -84,6 +92,9 @@ export function Header({ lang }: { lang: Locale }) {
             <Link href={donateHref} className="btn-gold whitespace-nowrap px-3 py-2.5 text-[14px] sm:px-5 sm:text-[15px]">
               {t(ui.donate)} <Heart size={17} strokeWidth={2.2} className="hidden sm:block" />
             </Link>
+            <Suspense fallback={<AccountLinkView lang={lang} variant="mobile" firstName={null} />}>
+              <AccountLink lang={lang} variant="mobile" />
+            </Suspense>
             <MobileMenu
               lang={lang}
               items={items}
@@ -94,6 +105,7 @@ export function Header({ lang }: { lang: Locale }) {
                 donate: t(ui.donate),
                 language: t(ui.language),
                 home: t(ui.home),
+                account: t(auth.areaName),
               }}
             />
           </div>

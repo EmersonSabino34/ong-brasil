@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { ChevronDown, Heart, Menu, X } from "@/components/icons";
+import { ChevronDown, Heart, Menu, User, X } from "@/components/icons";
 import { Logo } from "@/components/logo";
 import type { Locale } from "@/lib/i18n";
 import { LanguageSwitcher } from "./language-switcher";
@@ -13,7 +13,7 @@ import type { MenuItem } from "./types";
 type Props = {
   lang: Locale;
   items: MenuItem[];
-  labels: { open: string; close: string; donate: string; language: string; home: string };
+  labels: { open: string; close: string; donate: string; language: string; home: string; account: string };
   donateHref: string;
 };
 
@@ -138,6 +138,13 @@ export function MobileMenu({ lang, items, labels, donateHref }: Props) {
             <p className="mb-2 text-xs font-black uppercase tracking-wider text-muted">{labels.language}</p>
             <LanguageSwitcher lang={lang} label={labels.language} variant="list" />
           </div>
+          <Link
+            href={`/${lang}/minha-conta`}
+            onClick={close}
+            className="btn w-full border-2 border-navy-700/15 py-3 text-[17px] text-navy-900 hover:border-navy-700/40 hover:bg-navy-50"
+          >
+            <User size={20} /> {labels.account}
+          </Link>
           <Link href={donateHref} onClick={close} className="btn-gold w-full py-3.5 text-lg">
             {labels.donate} <Heart size={20} />
           </Link>

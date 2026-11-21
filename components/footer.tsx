@@ -2,6 +2,7 @@ import Link from "next/link";
 import { SocialLinks } from "@/components/header/header";
 import { Heart, Mail, Phone } from "@/components/icons";
 import { Logo } from "@/components/logo";
+import { auth } from "@/lib/content/auth";
 import { footerColumns, navByKey } from "@/lib/content/nav";
 import { ui } from "@/lib/content/ui";
 import { href, translator, type Locale } from "@/lib/i18n";
@@ -72,9 +73,14 @@ export function Footer({ lang }: { lang: Locale }) {
       <div className="border-t border-white/10">
         <div className="container-site flex flex-col gap-2 py-4 text-sm text-white/65 sm:flex-row sm:items-center sm:justify-between">
           <p>© {t(ui.rights)}</p>
-          <Link href={href(lang, "/privacidade")} className="hover:text-gold-300">
-            {t(ui.privacy)}
-          </Link>
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            <Link href={href(lang, "/minha-conta")} className="hover:text-gold-300">
+              {t(auth.areaName)}
+            </Link>
+            <Link href={href(lang, "/privacidade")} className="hover:text-gold-300">
+              {t(ui.privacy)}
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
