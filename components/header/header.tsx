@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import { FlagBE, FlagBR, FlagPT } from "@/components/flags";
-
 import { Facebook, Heart, Instagram, MapPin, Youtube } from "@/components/icons";
 import { Logo } from "@/components/logo";
 import { nav } from "@/lib/content/nav";
