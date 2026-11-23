@@ -9,7 +9,6 @@ type LogoProps = {
 export function LogoMark({ variant = "dark", className = "" }: { variant?: "dark" | "light"; className?: string }) {
   const check = variant === "dark" ? "#0b2a4a" : "#ffffff";
   return (
-    
     <svg viewBox="0 0 120 84" className={className} aria-hidden="true" focusable="false">
       <defs>
         <linearGradient id={`gold-${variant}`} x1="0" y1="0" x2="1" y2="1">
