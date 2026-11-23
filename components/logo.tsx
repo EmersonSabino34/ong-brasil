@@ -5,6 +5,7 @@ type LogoProps = {
   markOnly?: boolean;
 };
 
+
 /** Símbolo: laço do infinito dourado + "check" (azul no fundo claro, branco no fundo escuro). */
 export function LogoMark({ variant = "dark", className = "" }: { variant?: "dark" | "light"; className?: string }) {
   const check = variant === "dark" ? "#0b2a4a" : "#ffffff";
