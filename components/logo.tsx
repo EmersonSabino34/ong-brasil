@@ -19,6 +19,7 @@ export function LogoMark({ variant = "dark", className = "" }: { variant?: "dark
         </linearGradient>
       </defs>
       <path
+        
         d="M60 40C49 22 26 11 13 24 1 36 9 62 30 63c14 .6 23-11 31-22 9-13 25-30 41-25 9 3 11 12 7 20"
         fill="none"
         stroke={`url(#gold-${variant})`}
