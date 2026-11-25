@@ -4,7 +4,6 @@ import { FlagBE, FlagBR, FlagPT } from "@/components/flags";
 import { Facebook, Heart, Instagram, MapPin, Youtube } from "@/components/icons";
 import { Logo } from "@/components/logo";
 import { nav } from "@/lib/content/nav";
-
 import { ui } from "@/lib/content/ui";
 import { href, translator, type Locale } from "@/lib/i18n";
 import { site } from "@/lib/site";
