@@ -4,7 +4,6 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import type { FieldErrors } from "@/app/actions";
 import { isStrongEnough } from "@/lib/auth/constants";
-import { sendEmail } from "@/lib/auth/email";
 import { clear, hit, isLimited } from "@/lib/auth/rate-limit";
 import { endSession, startSession } from "@/lib/auth/session";
 import {
@@ -18,6 +17,7 @@ import {
   verifyPassword,
 } from "@/lib/auth/users";
 import { auth } from "@/lib/content/auth";
+import { sendEmail } from "@/lib/email";
 import { forms } from "@/lib/content/forms";
 import { EMAIL, getLang, isBot, str, values } from "@/lib/form-data";
 import { hasLocale, type Locale } from "@/lib/i18n";

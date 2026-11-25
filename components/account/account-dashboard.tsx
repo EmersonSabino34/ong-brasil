@@ -243,7 +243,7 @@ export async function AccountDashboard({ lang, searchParams }: { lang: Locale; s
             <p className="mt-2 text-[16px] text-ink/85">{t(auth.account.subtitle)}</p>
             <div className="mt-6 grid gap-3 sm:grid-cols-3">
               {stats.map(({ label: l, value, Icon }) => (
-                <div key={l} className="rounded-2xl bg-cream p-4 ring-1 ring-black/[0.04]">
+                <div key={l} className="rounded-2xl bg-cream p-4 ring-1 ring-black/4">
                   <p className="flex items-center gap-2 text-[13px] font-bold text-muted">
                     <Icon size={16} className="text-gold-600" /> {l}
                   </p>
@@ -326,7 +326,7 @@ export async function AccountDashboard({ lang, searchParams }: { lang: Locale; s
 export function AccountSkeleton() {
   return (
     <div className="container-site grid animate-pulse gap-6 py-10 sm:py-12 lg:grid-cols-[340px_minmax(0,1fr)] xl:grid-cols-[370px_minmax(0,1fr)]" aria-hidden="true">
-      <div className="h-[520px] rounded-2xl bg-white" />
+      <div className="h-130 rounded-2xl bg-white" />
       <div className="space-y-6">
         <div className="h-52 rounded-2xl bg-white" />
         <div className="h-64 rounded-2xl bg-white" />

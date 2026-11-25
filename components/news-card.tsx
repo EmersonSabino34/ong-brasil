@@ -12,7 +12,7 @@ export function NewsCard({ lang, item }: { lang: Locale; item: NewsItem }) {
       href={href(lang, `/noticias/${item.slug}`)}
       className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-[0_10px_28px_-18px_rgb(11_42_74/0.45)] ring-1 ring-black/5 transition hover:-translate-y-0.5"
     >
-      <div className="relative aspect-[16/9] overflow-hidden">
+      <div className="relative aspect-video overflow-hidden">
         <Image src={item.image} alt="" fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" placeholder="blur" className="object-cover transition duration-500 group-hover:scale-105" />
       </div>
       <div className="flex flex-1 flex-col p-6">

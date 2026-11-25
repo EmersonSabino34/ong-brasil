@@ -56,7 +56,7 @@ export function MobileMenu({ lang, items, labels, donateHref }: Props) {
       </button>
 
       <div
-        className={`fixed inset-0 z-[60] bg-navy-950/60 backdrop-blur-[2px] transition-opacity ${open ? "opacity-100" : "pointer-events-none opacity-0"}`}
+        className={`fixed inset-0 z-60 bg-navy-950/60 backdrop-blur-[2px] transition-opacity ${open ? "opacity-100" : "pointer-events-none opacity-0"}`}
         onClick={close}
         aria-hidden="true"
       />
@@ -66,7 +66,7 @@ export function MobileMenu({ lang, items, labels, donateHref }: Props) {
         aria-modal="true"
         aria-label="Menu"
         inert={!open}
-        className={`fixed inset-y-0 right-0 z-[70] flex w-[min(24rem,100%)] flex-col bg-white shadow-2xl transition-transform duration-300 ${
+        className={`fixed inset-y-0 right-0 z-70 flex w-[min(24rem,100%)] flex-col bg-white shadow-2xl transition-transform duration-300 ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >

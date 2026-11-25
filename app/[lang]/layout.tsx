@@ -3,6 +3,7 @@ import { Caveat, Merriweather, Nunito_Sans } from "next/font/google";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header/header";
+import { WhatsAppButton } from "@/components/whatsapp-button";
 import { ui } from "@/lib/content/ui";
 import { hasLocale, localeLabels, locales } from "@/lib/i18n";
 import { site } from "@/lib/site";
@@ -54,7 +55,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
       <body className="flex min-h-dvh flex-col">
         <a
           href="#conteudo"
-          className="sr-only z-[100] rounded-full bg-gold-400 px-4 py-2 font-bold text-navy-900 focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+          className="sr-only z-100 rounded-full bg-gold-400 px-4 py-2 font-bold text-navy-900 focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
         >
           {ui.skip[lang]}
         </a>
@@ -63,6 +64,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
           {children}
         </main>
         <Footer lang={lang} />
+        <WhatsAppButton lang={lang} />
       </body>
     </html>
   );

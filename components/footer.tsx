@@ -1,15 +1,19 @@
 import Link from "next/link";
 import { SocialLinks } from "@/components/header/header";
-import { Heart, Mail, Phone } from "@/components/icons";
+import { Heart, Mail, Phone, WhatsApp } from "@/components/icons";
 import { Logo } from "@/components/logo";
 import { auth } from "@/lib/content/auth";
 import { footerColumns, navByKey } from "@/lib/content/nav";
 import { ui } from "@/lib/content/ui";
 import { href, translator, type Locale } from "@/lib/i18n";
-import { site } from "@/lib/site";
+import { isPlaceholder, site, whatsappLink } from "@/lib/site";
 
 export function Footer({ lang }: { lang: Locale }) {
   const t = translator(lang);
+  const phones = [
+    { ...site.phones.portugal, label: ui.phonePT },
+    { ...site.phones.brasil, label: ui.phoneBR },
+  ].filter((p) => !isPlaceholder(p.tel));
   return (
     <footer className="bg-[linear-gradient(90deg,#082b4f_0%,#0b3a62_100%)] text-white">
       <div className="container-site grid gap-10 py-10 md:grid-cols-2 lg:grid-cols-[1fr_1.7fr_1.35fr_1fr] lg:gap-0 lg:py-9">
@@ -47,17 +51,23 @@ export function Footer({ lang }: { lang: Locale }) {
                 <Mail size={20} /> {site.email}
               </a>
             </li>
-            <li className="flex items-start gap-3">
-              <Phone size={20} className="mt-0.5 shrink-0" />
-              <span className="flex flex-col">
-                <a href={`tel:${site.phones.portugal.tel}`} className="hover:text-gold-300">
-                  {site.phones.portugal.display} {t(ui.phonePT)}
-                </a>
-                <a href={`tel:${site.phones.brasil.tel}`} className="hover:text-gold-300">
-                  {site.phones.brasil.display} {t(ui.phoneBR)}
-                </a>
-              </span>
+            <li>
+              <a href={whatsappLink(t(ui.whatsappGreeting))} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-gold-300">
+                <WhatsApp size={20} /> {site.whatsapp.display} <span className="text-white/65">· {t(ui.whatsapp)}</span>
+              </a>
             </li>
+            {phones.length > 0 && (
+              <li className="flex items-start gap-3">
+                <Phone size={20} className="mt-0.5 shrink-0" />
+                <span className="flex flex-col">
+                  {phones.map((p) => (
+                    <a key={p.tel} href={`tel:${p.tel}`} className="hover:text-gold-300">
+                      {p.display} {t(p.label)}
+                    </a>
+                  ))}
+                </span>
+              </li>
+            )}
           </ul>
         </div>
 

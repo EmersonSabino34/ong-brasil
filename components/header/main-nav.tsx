@@ -62,7 +62,7 @@ export function MainNav({ items }: { items: MenuItem[] }) {
               aria-current={active ? "page" : undefined}
               aria-haspopup={hasChildren ? "true" : undefined}
               aria-expanded={hasChildren ? isOpen : undefined}
-              className={`relative flex h-full items-center gap-1 px-3.5 py-[11px] text-[16.5px] font-semibold text-white/95 transition-colors hover:text-gold-300 2xl:px-5 ${
+              className={`relative flex h-full items-center gap-1 px-3.5 py-2.75 text-[16.5px] font-semibold text-white/95 transition-colors hover:text-gold-300 2xl:px-5 ${
                 active ? "text-white" : ""
               }`}
             >
@@ -70,7 +70,7 @@ export function MainNav({ items }: { items: MenuItem[] }) {
               {hasChildren && (
                 <ChevronDown size={15} strokeWidth={2.6} className={`mt-0.5 transition-transform ${isOpen ? "rotate-180" : ""}`} />
               )}
-              {active && <span className="absolute inset-x-3.5 bottom-0 h-[3px] rounded-t bg-gold-500 2xl:inset-x-5" />}
+              {active && <span className="absolute inset-x-3.5 bottom-0 h-0.75 rounded-t bg-gold-500 2xl:inset-x-5" />}
             </Link>
 
             {hasChildren && (

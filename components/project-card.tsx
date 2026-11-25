@@ -19,9 +19,9 @@ export function ProjectCard({ href, image, icon, title, summary, cta, badge }: P
   return (
     <Link
       href={href}
-      className="group flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-[0_10px_28px_-18px_rgb(11_42_74/0.45)] ring-1 ring-black/[0.04] transition hover:-translate-y-0.5 hover:shadow-[0_18px_36px_-18px_rgb(11_42_74/0.5)]"
+      className="group flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-[0_10px_28px_-18px_rgb(11_42_74/0.45)] ring-1 ring-black/4 transition hover:-translate-y-0.5 hover:shadow-[0_18px_36px_-18px_rgb(11_42_74/0.5)]"
     >
-      <div className="relative aspect-[2/1] overflow-hidden">
+      <div className="relative aspect-2/1 overflow-hidden">
         <Image
           src={image}
           alt=""

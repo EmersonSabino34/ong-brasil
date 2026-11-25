@@ -44,7 +44,7 @@ export function Logo({ variant = "dark", className = "", markOnly = false }: Log
   const sub = variant === "dark" ? "text-navy-900/80" : "text-white/80";
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      <LogoMark variant={variant} className="h-10 w-auto shrink-0 sm:h-[58px] xl:h-[70px]" />
+      <LogoMark variant={variant} className="h-10 w-auto shrink-0 sm:h-14.5 xl:h-17.5" />
       {!markOnly && (
         <span className={`flex flex-col leading-none ${text}`}>
           <span className="font-serif text-[1.15rem] font-black tracking-tight sm:text-[1.7rem] xl:text-[2.05rem]">Infinita</span>

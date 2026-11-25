@@ -88,7 +88,7 @@ export function SelectField({
         key={String(props.defaultValue ?? "")}
         id={`f-${name}`}
         name={name}
-        className="field appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%230b2a4a%22 stroke-width=%222.5%22><path d=%22m6 9 6 6 6-6%22/></svg>')] bg-[length:18px] bg-[right_1rem_center] bg-no-repeat pr-10"
+        className="field appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%230b2a4a%22 stroke-width=%222.5%22><path d=%22m6 9 6 6 6-6%22/></svg>')] bg-size-[18px] bg-position-[right_1rem_center] bg-no-repeat pr-10"
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? `e-${name}` : undefined}
         required={!optional}
@@ -137,7 +137,7 @@ export function HiddenFields({ lang }: { lang: Locale }) {
   return (
     <>
       <input type="hidden" name="lang" value={lang} />
-      <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
+      <div className="absolute left-[-9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
         <label>
           Website
           <input type="text" name="website" tabIndex={-1} autoComplete="off" />

@@ -99,14 +99,14 @@ body {
   }
 
   .card {
-    @apply rounded-2xl bg-white shadow-[0_10px_30px_-18px_rgb(11_42_74/0.35)] ring-1 ring-black/[0.04];
+    @apply rounded-2xl bg-white shadow-[0_10px_30px_-18px_rgb(11_42_74/0.35)] ring-1 ring-black/4;
   }
 
   .field-label {
     @apply mb-1.5 block text-sm font-bold text-navy-900;
   }
   .field {
-    @apply w-full rounded-xl border border-line bg-white px-4 py-3 text-ink shadow-xs outline-none transition placeholder:text-muted/70 focus:border-navy-600 focus:ring-3 focus:ring-navy-600/15 aria-[invalid=true]:border-red-500 aria-[invalid=true]:ring-red-500/15;
+    @apply w-full rounded-xl border border-line bg-white px-4 py-3 text-ink shadow-xs outline-none transition placeholder:text-muted/70 focus:border-navy-600 focus:ring-3 focus:ring-navy-600/15 aria-invalid:border-red-500 aria-invalid:ring-red-500/15;
   }
   .field-error {
     @apply mt-1 text-sm font-semibold text-red-600;

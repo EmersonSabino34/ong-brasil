@@ -53,7 +53,7 @@ export function Header({ lang }: { lang: Locale }) {
               <Logo />
             </Link>
             <span className="hidden h-14 w-px bg-navy-900/15 lg:block" aria-hidden="true" />
-            <p className="hidden max-w-[245px] text-[15px] leading-[1.35] text-navy-900/90 lg:block">{t(ui.tagline)}</p>
+            <p className="hidden max-w-61.25 text-[15px] leading-[1.35] text-navy-900/90 lg:block">{t(ui.tagline)}</p>
           </div>
 
           {/* Desktop */}

@@ -1,6 +1,6 @@
 type FlagProps = { className?: string; title?: string };
 
-const base = "inline-block h-[14px] w-5 shrink-0 overflow-hidden rounded-[2px] ring-1 ring-black/10";
+const base = "inline-block h-3.5 w-5 shrink-0 overflow-hidden rounded-xs ring-1 ring-black/10";
 
 export function FlagBR({ className = "", title = "Brasil" }: FlagProps) {
   return (

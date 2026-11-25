@@ -17,7 +17,7 @@ export function AllocationBars({ lang, compact = false }: { lang: Locale; compac
           </div>
           <div className="h-3 w-full overflow-hidden rounded-r bg-navy-100/70" aria-hidden="true">
             <div
-              className="h-full rounded-r-[4px] bg-navy-700 transition-colors group-hover:bg-navy-600 group-focus-visible:bg-navy-600"
+              className="h-full rounded-r-sm bg-navy-700 transition-colors group-hover:bg-navy-600 group-focus-visible:bg-navy-600"
               style={{ width: `${row.pct}%` }}
             />
           </div>

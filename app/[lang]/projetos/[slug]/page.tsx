@@ -60,7 +60,7 @@ export default async function ProjectPage({ params }: PageProps<"/[lang]/projeto
       <div className="container-site grid gap-10 py-14 lg:grid-cols-[minmax(0,1fr)_360px]">
         <article>
           <div className="mb-5 flex flex-wrap items-center gap-3">
-            <Flag className="!h-6 !w-9" />
+            <Flag className="h-6! w-9!" />
             <span className="font-bold text-navy-900">{t(ui.countries[project.country])}</span>
             <StatusBadge tone={project.status === "ativo" ? "leaf" : "gold"}>{t(ui.status[project.status])}</StatusBadge>
           </div>
@@ -89,7 +89,7 @@ export default async function ProjectPage({ params }: PageProps<"/[lang]/projeto
           <h3 className="mb-4 mt-10 font-serif text-xl font-black text-navy-900">{t(pp.photos)}</h3>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
             {[project.image, ...project.gallery].map((photo, i) => (
-              <div key={i} className={`relative overflow-hidden rounded-xl ${i === 0 ? "col-span-2 aspect-[2/1] sm:col-span-1 sm:aspect-square" : "aspect-square"}`}>
+              <div key={i} className={`relative overflow-hidden rounded-xl ${i === 0 ? "col-span-2 aspect-2/1 sm:col-span-1 sm:aspect-square" : "aspect-square"}`}>
                 <Image src={photo} alt="" fill sizes="(min-width: 640px) 30vw, 50vw" placeholder="blur" className="object-cover" />
               </div>
             ))}

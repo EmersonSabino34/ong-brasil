@@ -68,7 +68,7 @@ export default async function AreaPage({ params }: PageProps<"/[lang]/o-que-faze
         </div>
 
         <aside className="space-y-5">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg">
+          <div className="relative aspect-4/3 overflow-hidden rounded-2xl shadow-lg">
             <Image src={area.image} alt="" fill sizes="(min-width: 1024px) 420px, 100vw" placeholder="blur" className="object-cover" />
           </div>
           <div className="rounded-2xl bg-navy-800 p-6 text-white">

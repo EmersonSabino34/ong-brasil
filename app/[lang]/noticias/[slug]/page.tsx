@@ -55,7 +55,7 @@ export default async function NewsArticlePage({ params }: PageProps<"/[lang]/not
         </header>
 
         <div className="container-site max-w-4xl">
-          <div className="relative -mt-2 aspect-[16/9] overflow-hidden rounded-b-2xl shadow-xl sm:rounded-2xl">
+          <div className="relative -mt-2 aspect-video overflow-hidden rounded-b-2xl shadow-xl sm:rounded-2xl">
             <Image src={item.image} alt="" fill preload sizes="(min-width: 896px) 896px, 100vw" quality={85} placeholder="blur" className="object-cover" />
           </div>
           <div className="prose-ong mx-auto max-w-3xl py-10 text-[18px]">

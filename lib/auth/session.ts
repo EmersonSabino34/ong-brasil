@@ -2,6 +2,7 @@ import { createHmac, randomBytes, timingSafeEqual } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { cookies } from "next/headers";
+import { DATA_DIR } from "@/lib/db";
 import { SESSION_COOKIE } from "./constants";
 
 /**
@@ -25,7 +26,8 @@ async function loadSecret(): Promise<Buffer> {
   if (env && env.length >= 32) return Buffer.from(env, "utf8");
   if (env) console.warn("[auth] AUTH_SECRET muito curta (mínimo 32 caracteres). Usando chave local.");
 
-  const file = path.join(process.cwd(), ".data", ".auth-secret");
+  if (process.env.VERCEL) console.error("[auth] Defina AUTH_SECRET nas variáveis de ambiente da Vercel: sem ela os logins caem a cada novo servidor.");
+  const file = path.join(DATA_DIR, ".auth-secret");
   try {
     const saved = (await readFile(file, "utf8")).trim();
     if (saved.length >= 32) return Buffer.from(saved, "utf8");
@@ -55,12 +57,14 @@ function sign(body: string, secret: Buffer) {
   return createHmac("sha256", secret).update(body).digest("base64url");
 }
 
-export async function encodeSession(payload: Payload) {
-  const body = Buffer.from(JSON.stringify(payload), "utf8").toString("base64url");
+/** Assina qualquer dado pequeno (JSON) para guardar num cookie. */
+export async function signToken(data: object) {
+  const body = Buffer.from(JSON.stringify(data), "utf8").toString("base64url");
   return `${body}.${sign(body, await getSecret())}`;
 }
 
-export async function decodeSession(token: string | undefined): Promise<Payload | null> {
+/** Confere a assinatura e a validade (`exp`, em segundos) de um token criado com signToken. */
+export async function verifyToken<T extends { exp: number }>(token: string | undefined): Promise<T | null> {
   if (!token) return null;
   const [body, signature] = token.split(".");
   if (!body || !signature) return null;
@@ -68,13 +72,22 @@ export async function decodeSession(token: string | undefined): Promise<Payload 
   const given = Buffer.from(signature);
   if (expected.length !== given.length || !timingSafeEqual(expected, given)) return null;
   try {
-    const data = JSON.parse(Buffer.from(body, "base64url").toString("utf8")) as Payload;
-    if (typeof data.uid !== "string" || typeof data.v !== "number" || typeof data.exp !== "number") return null;
-    if (data.exp * 1000 < Date.now()) return null;
+    const data = JSON.parse(Buffer.from(body, "base64url").toString("utf8")) as T;
+    if (typeof data.exp !== "number" || data.exp * 1000 < Date.now()) return null;
     return data;
   } catch {
     return null;
   }
+}
+
+export async function encodeSession(payload: Payload) {
+  return signToken(payload);
+}
+
+export async function decodeSession(token: string | undefined): Promise<Payload | null> {
+  const data = await verifyToken<Payload>(token);
+  if (!data || typeof data.uid !== "string" || typeof data.v !== "number") return null;
+  return data;
 }
 
 /** Lê a sessão do cookie da requisição atual. */

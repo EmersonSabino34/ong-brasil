@@ -35,7 +35,7 @@ export function AccountLinkView({ lang, variant, firstName }: { lang: Locale; va
     <Link
       href={target}
       title={signedIn ? auth.myAccount[lang] : undefined}
-      className="btn max-w-60 border-2 border-navy-700/15 bg-white px-5 py-[11px] text-[17px] text-navy-900 hover:border-navy-700/40 hover:bg-navy-50"
+      className="btn max-w-60 border-2 border-navy-700/15 bg-white px-5 py-2.75 text-[17px] text-navy-900 hover:border-navy-700/40 hover:bg-navy-50"
     >
       {avatar}
       <span className="truncate">{label}</span>

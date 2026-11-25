@@ -37,7 +37,7 @@ export default async function NewsPage({ params }: PageProps<"/[lang]/noticias">
           href={href(lang, `/noticias/${first.slug}`)}
           className="group mb-10 grid overflow-hidden rounded-2xl bg-white shadow-[0_16px_40px_-24px_rgb(11_42_74/0.5)] ring-1 ring-black/5 lg:grid-cols-2"
         >
-          <div className="relative aspect-[16/9] overflow-hidden lg:aspect-auto lg:min-h-[340px]">
+          <div className="relative aspect-video overflow-hidden lg:aspect-auto lg:min-h-85">
             <Image src={first.image} alt="" fill preload sizes="(min-width: 1024px) 50vw, 100vw" placeholder="blur" className="object-cover transition duration-500 group-hover:scale-105" />
           </div>
           <div className="flex flex-col justify-center p-7 sm:p-10">

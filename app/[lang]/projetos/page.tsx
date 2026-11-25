@@ -69,12 +69,12 @@ export default async function ProjectsPage({ params }: PageProps<"/[lang]/projet
                     href={href(lang, `/projetos/${p.slug}`)}
                     className="group grid overflow-hidden rounded-2xl bg-cream ring-1 ring-black/5 transition hover:shadow-lg sm:grid-cols-[2fr_3fr]"
                   >
-                    <div className="relative aspect-[16/10] sm:aspect-auto">
+                    <div className="relative aspect-16/10 sm:aspect-auto">
                       <Image src={p.image} alt="" fill sizes="(min-width: 768px) 25vw, 100vw" placeholder="blur" className="object-cover" />
                     </div>
                     <div className="p-6">
                       <div className="mb-3 flex items-center gap-3">
-                        <Flag className="!h-7 !w-10" />
+                        <Flag className="h-7! w-10!" />
                         <StatusBadge tone="gold">{t(ui.status.implantacao)}</StatusBadge>
                       </div>
                       <h3 className="font-serif text-xl font-black text-navy-900">{t(p.title)}</h3>

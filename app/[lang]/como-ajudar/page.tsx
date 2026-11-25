@@ -80,10 +80,10 @@ export default async function HelpPage({ params }: PageProps<"/[lang]/como-ajuda
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <div className="relative aspect-[3/4] overflow-hidden rounded-2xl">
+            <div className="relative aspect-3/4 overflow-hidden rounded-2xl">
               <Image src={img.roupasArara} alt="" fill sizes="(min-width: 1024px) 25vw, 50vw" placeholder="blur" className="object-cover" />
             </div>
-            <div className="relative mt-10 aspect-[3/4] overflow-hidden rounded-2xl">
+            <div className="relative mt-10 aspect-3/4 overflow-hidden rounded-2xl">
               <Image src={img.voluntariosCaixas} alt="" fill sizes="(min-width: 1024px) 25vw, 50vw" placeholder="blur" className="object-cover" />
             </div>
           </div>

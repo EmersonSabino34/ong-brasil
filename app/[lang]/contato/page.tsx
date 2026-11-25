@@ -3,13 +3,13 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { ContactForm } from "@/components/forms/contact-form";
 import { SocialLinks } from "@/components/header/header";
-import { ChevronDown, Clock, Mail, MapPin, MessageCircle, Phone } from "@/components/icons";
+import { ChevronDown, Clock, Mail, MapPin, Phone, WhatsApp } from "@/components/icons";
 import { PageHeader, SectionTitle } from "@/components/ui";
 import { contactPage as cp } from "@/lib/content/pages";
 import { ui } from "@/lib/content/ui";
 import { hasLocale, href, translator } from "@/lib/i18n";
 import { img } from "@/lib/images";
-import { site } from "@/lib/site";
+import { isPlaceholder, site, whatsappLink } from "@/lib/site";
 
 const phone = { pt: "Telefone", fr: "Téléphone", nl: "Telefoon" };
 
@@ -26,8 +26,13 @@ export default async function ContactPage({ params }: PageProps<"/[lang]/contato
 
   const channels = [
     { Icon: Mail, label: "E-mail", value: site.email, link: `mailto:${site.email}` },
-    { Icon: Phone, label: `${t(phone)} ${t(ui.phonePT)}`, value: site.phones.portugal.display, link: `tel:${site.phones.portugal.tel}` },
-    { Icon: Phone, label: `${t(phone)} ${t(ui.phoneBR)}`, value: site.phones.brasil.display, link: `tel:${site.phones.brasil.tel}` },
+    { Icon: WhatsApp, label: `${t(ui.whatsapp)} ${t(ui.phoneBE)}`, value: site.whatsapp.display, link: whatsappLink(t(ui.whatsappGreeting)) },
+    ...[
+      { phone: site.phones.portugal, country: ui.phonePT },
+      { phone: site.phones.brasil, country: ui.phoneBR },
+    ]
+      .filter(({ phone: p }) => !isPlaceholder(p.tel))
+      .map(({ phone: p, country }) => ({ Icon: Phone, label: `${t(phone)} ${t(country)}`, value: p.display, link: `tel:${p.tel}` })),
     { Icon: MapPin, label: t(cp.address), value: site.address.street },
     { Icon: Clock, label: t(cp.hours), value: t(cp.hoursText) },
   ];
@@ -61,7 +66,11 @@ export default async function ContactPage({ params }: PageProps<"/[lang]/contato
                   <div className="min-w-0">
                     <p className="text-xs font-black uppercase tracking-wider text-muted">{label}</p>
                     {link ? (
-                      <a href={link} className="wrap-break-word font-bold text-navy-900 hover:text-gold-700">
+                      <a
+                        href={link}
+                        {...(link.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                        className="wrap-break-word font-bold text-navy-900 hover:text-gold-700"
+                      >
                         {value}
                       </a>
                     ) : (
@@ -72,12 +81,12 @@ export default async function ContactPage({ params }: PageProps<"/[lang]/contato
               ))}
             </ul>
             <a
-              href={`https://wa.me/${site.whatsapp}`}
+              href={whatsappLink(t(ui.whatsappGreeting))}
               target="_blank"
               rel="noopener noreferrer"
               className="btn mt-6 w-full bg-[#1c9e52] py-3 text-white hover:bg-[#178745]"
             >
-              <MessageCircle size={20} /> {t(cp.whatsapp)}
+              <WhatsApp size={20} /> {t(cp.whatsapp)}
             </a>
             <div className="mt-6 border-t border-line pt-5">
               <p className="mb-3 text-xs font-black uppercase tracking-wider text-muted">{t(ui.followUs)}</p>

@@ -1,6 +1,10 @@
 /** Nome do cookie da sessão (usado também no proxy.ts, por isso fica num arquivo sem dependências). */
 export const SESSION_COOKIE = "ie_sessao";
 
+/** Cookie da sessão do painel administrativo (/admin). */
+export const ADMIN_COOKIE = "ie_admin";
+export const ADMIN_LOGIN_PATH = "/admin/entrar";
+
 /** Páginas que exigem login (caminhos sem o prefixo de idioma). */
 export const PROTECTED_PATHS = ["/minha-conta"];
 

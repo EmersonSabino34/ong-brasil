@@ -188,7 +188,7 @@ export function SignupForm({ lang }: { lang: Locale }) {
           />
         </div>
 
-        <div className="space-y-3.5 rounded-2xl bg-cream p-4 ring-1 ring-black/[0.04]">
+        <div className="space-y-3.5 rounded-2xl bg-cream p-4 ring-1 ring-black/4">
           <Checkbox name="newsletter" label={auth.signup.newsletter[lang]} defaultChecked={state.values ? v.newsletter === "on" : true} />
           <Consent lang={lang} error={e.consent} text={auth.signup.consent[lang]} defaultChecked={v.consent === "on"} />
         </div>

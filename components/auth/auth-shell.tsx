@@ -75,7 +75,7 @@ export function AuthShell({ lang, image, crumb, heading, subtitle, icon, childre
 
           {/* Lado do formulário */}
           <div className="px-5 py-8 sm:px-10 sm:py-10 xl:px-14 xl:py-12">
-            <div className="mx-auto max-w-[520px]">
+            <div className="mx-auto max-w-130">
               <span className="grid size-14 place-items-center rounded-2xl bg-[linear-gradient(180deg,#f7cb4d,#e2a414)] text-navy-900 shadow-[0_8px_18px_-8px_rgb(168_111_4/0.8)]">
                 {icon}
               </span>
@@ -101,7 +101,7 @@ export function FormSkeleton({ rows = 3 }: { rows?: number }) {
           <div className="h-12 rounded-xl bg-navy-50" />
         </div>
       ))}
-      <div className="h-[52px] rounded-[10px] bg-navy-50" />
+      <div className="h-13 rounded-[10px] bg-navy-50" />
     </div>
   );
 }

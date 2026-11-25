@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { PROTECTED_PATHS, SESSION_COOKIE } from "@/lib/auth/constants";
+import { ADMIN_COOKIE, ADMIN_LOGIN_PATH, PROTECTED_PATHS, SESSION_COOKIE } from "@/lib/auth/constants";
 import { defaultLocale, hasLocale, LOCALE_COOKIE, locales } from "@/lib/i18n";
 
 /** Escolhe o idioma: cookie (escolha do visitante) > Accept-Language do navegador > padrão. */
@@ -25,6 +25,19 @@ function getLocale(request: NextRequest) {
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  // Painel administrativo: fica fora dos idiomas. Sem cookie, vai para a tela de entrada
+  // (cada página e ação do painel confere a sessão de verdade).
+  if (pathname === "/admin" || pathname.startsWith("/admin/")) {
+    if (pathname !== ADMIN_LOGIN_PATH && !request.cookies.has(ADMIN_COOKIE)) {
+      const login = request.nextUrl.clone();
+      login.pathname = ADMIN_LOGIN_PATH;
+      login.search = pathname === "/admin" ? "" : `?next=${encodeURIComponent(pathname)}`;
+      return NextResponse.redirect(login);
+    }
+    return;
+  }
+
   const hasPrefix = locales.some(
     (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`),
   );

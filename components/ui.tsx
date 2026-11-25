@@ -19,17 +19,17 @@ export function SectionTitle({
     return (
       <div className={className}>
         <Tag className="font-serif text-[1.75rem] font-black leading-tight tracking-tight text-navy-900 sm:text-[2.2rem]">{children}</Tag>
-        <span className="mt-3 block h-[3px] w-14 rounded bg-gold-500" aria-hidden="true" />
+        <span className="mt-3 block h-0.75 w-14 rounded bg-gold-500" aria-hidden="true" />
       </div>
     );
   }
   return (
     <div className={`flex items-center justify-center gap-4 sm:gap-6 ${className}`}>
-      <span className="h-[3px] w-10 shrink-0 rounded bg-gold-500 sm:w-14" aria-hidden="true" />
+      <span className="h-0.75 w-10 shrink-0 rounded bg-gold-500 sm:w-14" aria-hidden="true" />
       <Tag className="text-center font-serif text-[1.75rem] font-black leading-tight tracking-tight text-navy-900 sm:text-[2.35rem]">
         {children}
       </Tag>
-      <span className="h-[3px] w-10 shrink-0 rounded bg-gold-500 sm:w-14" aria-hidden="true" />
+      <span className="h-0.75 w-10 shrink-0 rounded bg-gold-500 sm:w-14" aria-hidden="true" />
     </div>
   );
 }

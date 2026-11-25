@@ -1,6 +1,8 @@
 "use server";
 
+import { after } from "next/server";
 import QRCode from "qrcode";
+import { notifyTeam } from "@/lib/admin/notify";
 import { areas } from "@/lib/content/areas";
 import {
   donation,
@@ -17,7 +19,7 @@ import { EMAIL, getLang, isBot, str, values } from "@/lib/form-data";
 import type { Locale } from "@/lib/i18n";
 import { pixPayload } from "@/lib/pix";
 import { site } from "@/lib/site";
-import { newProtocol, saveSubmission } from "@/lib/submissions";
+import { newProtocol, saveSubmission, type SubmissionKind } from "@/lib/submissions";
 
 export type FieldErrors = Record<string, string>;
 
@@ -51,6 +53,12 @@ async function currentUserId() {
   }
 }
 
+/** Guarda o envio e, depois de responder à pessoa, avisa a equipe por e-mail. */
+async function store(kind: SubmissionKind, data: Record<string, unknown> & { protocol: string }) {
+  const record = await saveSubmission(kind, data);
+  after(() => notifyTeam(kind, record).catch((error) => console.error("[aviso por e-mail]", error)));
+}
+
 /** Validações comuns: nome, e-mail, consentimento. */
 function validateBase(data: FormData, lang: Locale, errors: FieldErrors) {
   if (str(data, "name").length < 2) errors.name = forms.errors.required[lang];
@@ -74,7 +82,7 @@ export async function sendContact(_prev: FormState, data: FormData): Promise<For
 
   const protocol = newProtocol("contato");
   try {
-    await saveSubmission("contato", { protocol, lang, userId: await currentUserId(), ...values(data, keys) });
+    await store("contato", { protocol, lang, userId: await currentUserId(), ...values(data, keys) });
   } catch {
     return { ok: false, message: forms.errors.server[lang], values: values(data, keys) };
   }
@@ -100,7 +108,7 @@ export async function sendVolunteer(_prev: FormState, data: FormData): Promise<F
 
   const protocol = newProtocol("voluntario");
   try {
-    await saveSubmission("voluntario", { protocol, lang, userId: await currentUserId(), ...values(data, keys), areas: interests });
+    await store("voluntario", { protocol, lang, userId: await currentUserId(), ...values(data, keys), areas: interests });
   } catch {
     return { ok: false, message: forms.errors.server[lang], values: values(data, keys) };
   }
@@ -123,7 +131,7 @@ export async function sendPartnership(_prev: FormState, data: FormData): Promise
 
   const protocol = newProtocol("parceria");
   try {
-    await saveSubmission("parceria", { protocol, lang, userId: await currentUserId(), ...values(data, keys) });
+    await store("parceria", { protocol, lang, userId: await currentUserId(), ...values(data, keys) });
   } catch {
     return { ok: false, message: forms.errors.server[lang], values: values(data, keys) };
   }
@@ -177,7 +185,7 @@ export async function registerDonation(_prev: DonationState, data: FormData): Pr
   }
 
   try {
-    await saveSubmission("doacao", {
+    await store("doacao", {
       protocol,
       lang,
       userId: await currentUserId(),

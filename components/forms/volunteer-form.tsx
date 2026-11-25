@@ -65,7 +65,7 @@ function Inner({ lang, onReset }: { lang: Locale; onReset: () => void }) {
           {Object.entries(forms.volunteerAreas).map(([value, label]) => (
             <label
               key={value}
-              className="flex cursor-pointer items-center gap-3 rounded-xl border border-line bg-white px-4 py-3 text-[15px] font-semibold text-navy-900 transition has-[:checked]:border-gold-500 has-[:checked]:bg-gold-50"
+              className="flex cursor-pointer items-center gap-3 rounded-xl border border-line bg-white px-4 py-3 text-[15px] font-semibold text-navy-900 transition has-checked:border-gold-500 has-checked:bg-gold-50"
             >
               <input type="checkbox" name="areas" value={value} defaultChecked={chosen.has(value)} className="size-5 accent-navy-700" />
               {label[lang]}

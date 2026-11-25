@@ -43,4 +43,12 @@ export const ui = {
   } satisfies Record<string, T>,
   phonePT: { pt: "(Portugal)", fr: "(Portugal)", nl: "(Portugal)" },
   phoneBR: { pt: "(Brasil)", fr: "(Brésil)", nl: "(Brazilië)" },
+  phoneBE: { pt: "(Bélgica)", fr: "(Belgique)", nl: "(België)" },
+  whatsapp: { pt: "WhatsApp", fr: "WhatsApp", nl: "WhatsApp" },
+  whatsappCta: { pt: "Fale conosco no WhatsApp", fr: "Écrivez-nous sur WhatsApp", nl: "Stuur ons een bericht via WhatsApp" },
+  whatsappGreeting: {
+    pt: "Olá! Vim pelo site da Infinita Esperança e gostaria de mais informações.",
+    fr: "Bonjour ! Je viens du site d’Infinita Esperança et j’aimerais avoir plus d’informations.",
+    nl: "Hallo! Ik kom via de website van Infinita Esperança en wil graag meer informatie.",
+  },
 };

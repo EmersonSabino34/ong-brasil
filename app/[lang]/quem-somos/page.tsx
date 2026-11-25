@@ -48,7 +48,7 @@ export default async function AboutPage({ params }: PageProps<"/[lang]/quem-somo
               <p key={i}>{t(p)}</p>
             ))}
           </div>
-          <div className="relative mt-6 aspect-[16/9] overflow-hidden rounded-2xl shadow-lg">
+          <div className="relative mt-6 aspect-video overflow-hidden rounded-2xl shadow-lg">
             <Image src={img.criancasSorrindo} alt="" fill sizes="(min-width: 1024px) 45vw, 100vw" placeholder="blur" className="object-cover" />
           </div>
         </div>
@@ -56,7 +56,7 @@ export default async function AboutPage({ params }: PageProps<"/[lang]/quem-somo
         <ol className="relative space-y-7 border-l-2 border-gold-500/60 pl-8 lg:mt-16">
           {about.timeline.map((item) => (
             <li key={item.year} className="relative">
-              <span className="absolute -left-[42px] top-0.5 grid size-5 place-items-center rounded-full bg-gold-500 ring-4 ring-cream" aria-hidden="true" />
+              <span className="absolute -left-10.5 top-0.5 grid size-5 place-items-center rounded-full bg-gold-500 ring-4 ring-cream" aria-hidden="true" />
               <p className="font-serif text-2xl font-black text-gold-700">{item.year}</p>
               <h3 className="text-lg font-extrabold text-navy-900">{t(item.title)}</h3>
               <p className="mt-1 text-[15.5px] leading-relaxed text-ink/85">{t(item.text)}</p>
@@ -129,7 +129,7 @@ export default async function AboutPage({ params }: PageProps<"/[lang]/quem-somo
             const Flag = flags[c.code];
             return (
               <li key={c.code} className="card flex flex-col items-start p-7">
-                <Flag className="!h-12 !w-[72px] rounded shadow" />
+                <Flag className="h-12! w-18! rounded shadow" />
                 <h3 className="mt-5 font-serif text-2xl font-black text-navy-900">
                   {t(ui.countries[c.code])}
                   {c.city && <span className="text-lg font-bold text-muted"> – {c.city}</span>}

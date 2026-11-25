@@ -53,13 +53,13 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
         />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgb(14_24_18/0.82)_0%,rgb(20_28_20/0.6)_30%,rgb(20_28_20/0.08)_55%,transparent_100%)] max-md:bg-[linear-gradient(180deg,rgb(8_20_30/0.35)_0%,rgb(8_20_30/0.82)_70%)]" />
 
-        <div className="container-site relative flex min-h-[460px] items-end pb-20 pt-24 md:min-h-[340px] md:items-center md:pb-14 md:pt-6 xl:min-h-[345px]">
-          <div className="max-w-[500px]">
+        <div className="container-site relative flex min-h-115 items-end pb-20 pt-24 md:min-h-85 md:items-center md:pb-14 md:pt-6 xl:min-h-86.25">
+          <div className="max-w-125">
             <h1 className="font-serif text-[3rem] font-black leading-[0.98] tracking-tight drop-shadow-[0_2px_8px_rgb(0_0_0/0.35)] sm:text-[3.4rem] xl:text-[3.6rem]">
               <span className="block text-white">Infinita</span>
               <span className="block text-gold-400">Esperança</span>
             </h1>
-            <p className="mt-3 max-w-[330px] text-[17px] leading-[1.3] text-white drop-shadow-[0_1px_4px_rgb(0_0_0/0.5)] sm:text-[17.5px]">{t(home.heroText)}</p>
+            <p className="mt-3 max-w-82.5 text-[17px] leading-[1.3] text-white drop-shadow-[0_1px_4px_rgb(0_0_0/0.5)] sm:text-[17.5px]">{t(home.heroText)}</p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Link href={href(lang, "/projetos")} className="btn-gold-soft px-4 py-2.5 text-[15px]">
                 {t(home.ctaProjects)} <ArrowRight size={18} />
@@ -81,7 +81,7 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
           </div>
 
           {/* Frase manuscrita à direita */}
-          <figure className="pointer-events-none absolute right-6 top-1/2 hidden w-[205px] -translate-y-[56%] -rotate-[11deg] lg:block xl:right-10 xl:w-[215px]">
+          <figure className="pointer-events-none absolute right-6 top-1/2 hidden w-51.25 translate-y-[-56%] rotate-[-11deg] lg:block xl:right-10 xl:w-53.75">
             <blockquote className="font-script text-[2.45rem] leading-[1.05] text-white drop-shadow-[0_2px_6px_rgb(0_0_0/0.45)] xl:text-[2.7rem]">
               {t(home.quote)}
             </blockquote>
@@ -128,7 +128,7 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
                 <li key={p.slug}>
                   <Link
                     href={href(lang, `/projetos/${p.slug}`)}
-                    className="group flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-[0_10px_28px_-18px_rgb(11_42_74/0.45)] ring-1 ring-black/[0.04] transition hover:-translate-y-0.5 hover:shadow-[0_18px_36px_-18px_rgb(11_42_74/0.5)]"
+                    className="group flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-[0_10px_28px_-18px_rgb(11_42_74/0.45)] ring-1 ring-black/4 transition hover:-translate-y-0.5 hover:shadow-[0_18px_36px_-18px_rgb(11_42_74/0.5)]"
                   >
                     <div className="relative aspect-[2.15/1] overflow-hidden">
                       <Image
@@ -159,9 +159,9 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
             </div>
           </div>
 
-          <aside className="relative overflow-hidden rounded-2xl bg-[#eef1f4] p-5 ring-1 ring-black/[0.03] lg:mt-1">
+          <aside className="relative overflow-hidden rounded-2xl bg-[#eef1f4] p-5 ring-1 ring-black/3 lg:mt-1">
             <div
-              className="pointer-events-none absolute inset-0 opacity-50 [background-image:radial-gradient(rgb(11_42_74/0.09)_1.2px,transparent_1.2px)] [background-size:10px_10px] [mask-image:linear-gradient(160deg,black,transparent_75%)]"
+              className="pointer-events-none absolute inset-0 opacity-50 bg-[radial-gradient(rgb(11_42_74/0.09)_1.2px,transparent_1.2px)] bg-size-[10px_10px] mask-[linear-gradient(160deg,black,transparent_75%)]"
               aria-hidden="true"
             />
             <h2 className="relative mb-5 flex items-center gap-2.5 font-serif text-[1.45rem] font-black text-navy-900">
@@ -170,7 +170,7 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
             <ul className="relative space-y-5">
               {presence.map(({ Flag, name, text }) => (
                 <li key={name} className="flex items-start gap-4">
-                  <Flag className="!h-9 !w-[54px] rounded-[3px] shadow-sm" />
+                  <Flag className="h-9! w-13.5! rounded-[3px]! shadow-sm" />
                   <div>
                     <p className="text-[16px] font-extrabold text-navy-900">{name}</p>
                     <p className="text-[13.5px] leading-snug text-ink/85">{text}</p>
@@ -199,7 +199,7 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
                 />
                 <span>
                   <span className="block text-[17px] font-extrabold text-navy-900">{t(s.title)}</span>
-                  <span className="mt-0.5 block max-w-[230px] text-[14px] leading-snug text-ink/85">{t(s.text)}</span>
+                  <span className="mt-0.5 block max-w-57.5 text-[14px] leading-snug text-ink/85">{t(s.text)}</span>
                 </span>
               </Link>
             </li>
