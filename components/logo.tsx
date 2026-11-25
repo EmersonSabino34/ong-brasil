@@ -4,7 +4,6 @@ type LogoProps = {
   /** Mostra só o símbolo, sem o nome */
   markOnly?: boolean;
 };
-
 /** Símbolo: laço do infinito dourado + "check" (azul no fundo claro, branco no fundo escuro). */
 export function LogoMark({
   variant = "dark",
