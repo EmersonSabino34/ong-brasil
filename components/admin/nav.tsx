@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BarChart, Handshake, HandHeart, Heart, MessageCircle, ShieldCheck, Users } from "@/components/icons";
 
-
 const items = [
   { href: "/admin", label: "Visão geral", Icon: BarChart },
   { href: "/admin/doacoes", label: "Doações", Icon: Heart },
