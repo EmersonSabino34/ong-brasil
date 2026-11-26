@@ -14,7 +14,6 @@ const items = [
   { href: "/admin/configuracao", label: "Configuração", Icon: ShieldCheck },
 ];
 
-
 /** Menu do painel com a página atual destacada (lê a URL, por isso fica dentro de um <Suspense>). */
 export function AdminNav() {
   return <AdminNavList pathname={usePathname()} />;
